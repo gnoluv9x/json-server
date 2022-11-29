@@ -32,7 +32,7 @@ function randomProduct(categoriesList, numberOfProduct) {
         categoryId: category.id,
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
-        color: faker.commerce.color(),
+        color: faker.color.human(),
         price: Number.parseFloat(faker.commerce.price()),
         thumbnail: faker.image.imageUrl(400, 400, "food"),
       };
