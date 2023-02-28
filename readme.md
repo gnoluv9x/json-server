@@ -13,4 +13,5 @@ You can run:
 
 # Router
 
-- /api/db: list data
+- /api/data: list data
+- /api/data?\_limit=10&\_page=1: pagination
