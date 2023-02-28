@@ -24,9 +24,11 @@ server.use((req, res, next) => {
 });
 
 router.render = (req, res) => {
+  console.log("Debug_here req: ", req);
   // Check GET with pagination
   // If yes, custom output
   const headers = res.getHeaders();
+  console.log("Debug_here headers: ", headers);
 
   const totalCountHeader = headers["x-total-count"];
   if (req.method === "GET" && totalCountHeader) {
