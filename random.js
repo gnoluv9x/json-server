@@ -154,7 +154,7 @@ const LIST_INSURANCE_TYPES = [
   },
   {
     code: "HI",
-    name: "Rơi vỡ điện thoại",
+    name: "Rơi vỡ thiết bị",
   },
   {
     code: "HC10",
@@ -196,7 +196,7 @@ function randomListInsurances(numb) {
       id: faker.datatype.uuid(),
       code: faker.address.zipCodeByState(),
       refCode: faker.address.zipCodeByState(),
-      ownerFullname: faker.name.fullName(),
+      ownerFullname: faker.name.lastName() + " " + faker.name.firstName(),
       insuranceTypeName: insuranceItem.name,
       insuranceTypeCode: insuranceItem.code,
       insuranceFee: Number(faker.commerce.price(100000, 100000000, 0)),
