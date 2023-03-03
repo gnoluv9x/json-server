@@ -176,6 +176,18 @@ const LIST_INSURANCE_TYPES = [
     code: "HC11",
     name: "HODO",
   },
+  {
+    code: "HC9",
+    name: "Bảo hiểm toàn diện",
+  },
+  {
+    code: "A9",
+    name: "Bảo hiểm Jupviec",
+  },
+  {
+    code: "DFJ",
+    name: "Trễ chuyến bay VietJet",
+  },
 ];
 
 function getRandomIdxInArray(list) {
