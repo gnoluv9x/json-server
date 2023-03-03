@@ -187,9 +187,14 @@ function getRandomIdxInArray(list) {
 function randomListInsurances(numb) {
   if (numb <= 0) return [];
   const listInsurances = [];
+  let insuranceIdx = 0;
 
   Array.from(new Array(numb)).forEach(() => {
-    const insuranceItem = getRandomIdxInArray(LIST_INSURANCE_TYPES);
+    if (insuranceIdx === LIST_INSURANCE_TYPES.length) {
+      insuranceIdx = 0;
+    }
+
+    const insuranceItem = LIST_INSURANCE_TYPES[insuranceIdx];
     const effectivedAt = faker.date.between("2020-01-01T00:00:00.000Z", "2023-01-01T00:00:00.000Z");
 
     const insurance = {
@@ -206,6 +211,7 @@ function randomListInsurances(numb) {
     };
 
     listInsurances.push(insurance);
+    insuranceIdx++;
   });
 
   return listInsurances;
