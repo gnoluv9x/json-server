@@ -56,8 +56,8 @@ router.render = (req, res) => {
     const result = {
       data: res.locals.data,
       paginationVariables: {
-        page: Number.parseInt(queryParams._page) || 1,
-        limit: Number.parseInt(queryParams._limit) || 5,
+        page: Number.parseInt(queryParams.page) || 1,
+        limit: Number.parseInt(queryParams.limit) || 5,
         totalItemCount: Number.parseInt(totalCountHeader),
       },
     };
