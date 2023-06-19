@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
+import moment from "moment";
 // const fs = require("fs");
 //locale
 faker.locale = "vi";
