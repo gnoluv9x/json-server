@@ -11,6 +11,28 @@ const PORT = process.env.PORT || 4110;
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
+
+// Add the custom pagination middleware
+server.use((req, res, next) => {
+  // Check if the query parameters contain _limit and _page
+  if (req.query.limit && req.query.page) {
+    // Extract the values
+    const limit = req.query.limit;
+    const page = req.query.page;
+
+    // Add the limit and page parameters with the extracted values
+    req.query._limit = limit;
+    req.query._page = page;
+
+    // Remove the _limit and _page parameters from the query
+    delete req.query.limit;
+    delete req.query.page;
+  }
+
+  // Continue to the next middleware
+  next();
+});
+
 server.use((req, res, next) => {
   if (req.method === "POST") {
     req.body.createdAt = Date.now();
@@ -27,8 +49,6 @@ router.render = (req, res) => {
   // Check GET with pagination
   // If yes, custom output
   const headers = res.getHeaders();
-  console.log("Debug_here headers: ", headers);
-
   const totalCountHeader = headers["x-total-count"];
   if (req.method === "GET" && totalCountHeader) {
     const queryParams = queryString.parse(req._parsedUrl.query);
@@ -36,9 +56,9 @@ router.render = (req, res) => {
     const result = {
       data: res.locals.data,
       paginationVariables: {
-        _page: Number.parseInt(queryParams._page) || 1,
-        _limit: Number.parseInt(queryParams._limit) || 5,
-        _totalRows: Number.parseInt(totalCountHeader),
+        page: Number.parseInt(queryParams._page) || 1,
+        limit: Number.parseInt(queryParams._limit) || 5,
+        totalItemCount: Number.parseInt(totalCountHeader),
       },
     };
 
