@@ -24,7 +24,7 @@ function getRandomList(numb) {
       orderId: faker.database.mongodbObjectId(),
       phoneNumber: faker.phone.number("09########"),
       productName: faker.commerce.productName(),
-      createdAt,
+      createdAt: moment(createdAt).format("DD-MM-YYYY"),
       status: getRandomIdxInArray(LIST_STATUS),
     };
 
