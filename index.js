@@ -64,7 +64,7 @@ router.render = (req, res) => {
       paginationVariables: {
         page: Number.parseInt(queryParams.page) || 1,
         limit: Number.parseInt(queryParams.limit) || 5,
-        totalItemCount: Number.parseInt(data.length),
+        totalItemCount: Number.parseInt(totalCountHeader),
       },
     };
 
