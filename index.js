@@ -53,12 +53,18 @@ router.render = (req, res) => {
   if (req.method === "GET" && totalCountHeader) {
     const queryParams = queryString.parse(req._parsedUrl.query);
 
+    let data = res.locals.data;
+
+    if (queryParams?.statusCode) {
+      data = data.filter(item => item.statusCode === queryParams?.statusCode);
+    }
+
     const result = {
-      data: res.locals.data,
+      data,
       paginationVariables: {
         page: Number.parseInt(queryParams.page) || 1,
         limit: Number.parseInt(queryParams.limit) || 5,
-        totalItemCount: Number.parseInt(totalCountHeader),
+        totalItemCount: Number.parseInt(data.length),
       },
     };
 

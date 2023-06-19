@@ -5,7 +5,10 @@ import moment from "moment";
 //locale
 faker.locale = "vi";
 
-const LIST_STATUS = ["Thành công", "Thất bại"];
+const LIST_STATUS = [
+  { title: "Thành công", code: "success" },
+  { title: "Thất bại", code: "fail" },
+];
 
 function getRandomIdxInArray(list) {
   const randomIdx = Math.floor(Math.random() * list.length);
@@ -19,6 +22,7 @@ function getRandomList(numb) {
 
   Array.from(new Array(numb)).forEach(() => {
     const createdAt = faker.date.between("2020-01-01T00:00:00.000Z", "2024-01-01T00:00:00.000Z");
+    const randomStatus = getRandomIdxInArray(LIST_STATUS);
 
     const insurance = {
       id: faker.datatype.uuid(),
@@ -26,7 +30,8 @@ function getRandomList(numb) {
       phoneNumber: faker.phone.number("09########"),
       productName: faker.commerce.productName(),
       createdAt: moment(createdAt).format("DD-MM-YYYY"),
-      status: getRandomIdxInArray(LIST_STATUS),
+      status: randomStatus.title,
+      statusCode: randomStatus.code,
     };
 
     listing.push(insurance);
