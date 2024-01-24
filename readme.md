@@ -14,4 +14,4 @@ You can run:
 # Router
 
 - /api/data: list data
-- /api/data?\_limit=10&\_page=1: pagination
+- /api/data?limit=10&page=1: pagination
