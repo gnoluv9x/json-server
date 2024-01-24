@@ -50,6 +50,7 @@ router.render = (req, res) => {
   // If yes, custom output
   const headers = res.getHeaders();
   const totalCountHeader = headers["x-total-count"];
+
   if (req.method === "GET" && totalCountHeader) {
     const queryParams = queryString.parse(req._parsedUrl.query);
 
