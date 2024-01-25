@@ -2,6 +2,11 @@ import { fakerVI as faker } from "@faker-js/faker";
 import fs from "fs";
 import moment from "moment";
 
+
+function currencyFormat(string) {
+  return string.replace(/(?!^)(?=(\d{3})+$)/g, '.') + " đ"
+}
+
 function getRandomLists(numb, genItemFunc) {
   if (numb <= 0) return [];
   const listing = [];
@@ -25,6 +30,8 @@ function getRandomLists(numb, genItemFunc) {
     sellName: faker.person.firstName(),
     agentName: faker.person.fullName(),
     createdAt: moment(createdAt).format("DD-MM-YYYY"),
+    revenue: currencyFormat(String(faker.number.int({ min: 10000, max: 10000000 }))),
+    comission: currencyFormat(String(faker.number.int({ min: 10000, max: 10000000 }))),
     activeName: faker.string.alpha(),
     phoneNumber: faker.phone.number(),
     commissionRate: faker.number.int({ min: 0.1, max: 99.9 }),
@@ -38,8 +45,8 @@ function getRandomLists(numb, genItemFunc) {
     bdCode: faker.number.int({ min: 1000, max: 10000 }),
     bdName: faker.person.fullName(),
     totalAgents: faker.number.int({ min: 0, max: 100 }),
-    revenue: faker.finance.amount(100000, 10000000),
-    comission: faker.finance.amount(100000, 100000000),
+    revenue: currencyFormat(String(faker.number.int({ min: 10000, max: 10000000 }))),
+    comission: currencyFormat(String(faker.number.int({ min: 10000, max: 10000000 }))),
     sellName: faker.person.fullName(),
     createdAt: moment(createdAt).format("DD-MM-YYYY"),
     activeName: faker.string.alpha(),
