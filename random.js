@@ -21,8 +21,8 @@ function getRandomLists(numb, genItemFunc) {
   const listings = getRandomLists(100, (index) => ({
     sell: faker.datatype.boolean(),
     active: faker.datatype.boolean(),
-    agentId: faker.database.mongodbObjectId(),
-    sellName: faker.person.bio(),
+    agentId: faker.number.int({ min: 10000, max: 100000 }).toString(),
+    sellName: faker.person.firstName(),
     agentName: faker.person.fullName(),
     createdAt: moment(createdAt).format("DD-MM-YYYY"),
     activeName: faker.string.alpha(),
